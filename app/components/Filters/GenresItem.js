@@ -1,7 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { CheckBox } from "react-native-elements";
 
 class GenresItem extends React.Component {
+  static propTypes = {
+    checked: PropTypes.bool,
+    item: PropTypes.object,
+    onPress: PropTypes.func
+  };
   state = {
     checked: this.props.checked
   };
@@ -21,7 +27,6 @@ class GenresItem extends React.Component {
   };
 
   render() {
-    console.log("render");
     const { item } = this.props;
     return <CheckBox title={item.name} checked={this.state.checked} onPress={this.handleCheck} />;
   }

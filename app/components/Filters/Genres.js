@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FlatList, View } from "react-native";
 import { observer, inject } from "mobx-react";
 
@@ -7,6 +8,10 @@ import { GenresItem } from "./GenresItem";
 @inject("moviesStore")
 @observer
 class Genres extends React.Component {
+  static propTypes = {
+    moviesStore: PropTypes.object
+  };
+
   componentDidMount() {
     this.props.moviesStore.genresDidMount();
   }

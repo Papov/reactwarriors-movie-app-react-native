@@ -4,8 +4,14 @@ import { Home } from "../screens/Home";
 import { Filters } from "../screens/Filters";
 import { Genres } from "../screens/Genres";
 
-const FiltersStack = createStackNavigator(
+const HeaderStack = createStackNavigator(
   {
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        header: () => null
+      }
+    },
     Filters: {
       screen: Filters,
       navigationOptions: {
@@ -20,22 +26,16 @@ const FiltersStack = createStackNavigator(
     }
   },
   {
-    headerMode: "none"
+    headerMode: "screen"
   }
 );
 
 const AppNavigator = createStackNavigator(
   {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        header: () => null
-      }
-    },
-    Filters: FiltersStack
+    Home: HeaderStack
   },
   {
-    mode: "modal"
+    headerMode: "none"
   }
 );
 
