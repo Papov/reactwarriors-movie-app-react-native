@@ -18,6 +18,10 @@ class Filters extends React.Component {
     this.props.navigation.navigate("Genres");
   };
 
+  returnToMovies = () => {
+    this.props.navigation.goBack(null);
+  };
+
   render() {
     return (
       <View style={{ paddingHorizontal: 10 }}>
@@ -33,13 +37,18 @@ class Filters extends React.Component {
           title="Все жанры"
           label="Показать все жанры"
           onPress={this.props.moviesStore.showAllGenres}
-          color="#e2e2e2"
         />
         <ButtonDefault
           title="Сбросить фильтр"
           label=" "
           onPress={this.props.moviesStore.onReset}
-          color="#e2e2e2"
+          color="lightyellow"
+        />
+        <ButtonDefault
+          title="Вернуться к фильмам"
+          onPress={this.returnToMovies}
+          color="lightgreen"
+          label=" "
         />
       </View>
     );
