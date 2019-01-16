@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { View, FlatList, Text } from "react-native";
 import { observer, inject } from "mobx-react";
 
-import MovieItem from "./MovieItem";
-import { Separator } from "../Separator";
+import { MovieItem } from "./MovieItem";
 import styles from "./styles";
 
 @inject("moviesStore")
@@ -33,7 +32,6 @@ class MoviesList extends React.Component {
             data={movies}
             renderItem={({ item }) => <MovieItem item={item} />}
             keyExtractor={item => `movie${item.id}`}
-            ItemSeparatorComponent={Separator}
           />
         )}
       </View>
@@ -41,4 +39,4 @@ class MoviesList extends React.Component {
   }
 }
 
-export default MoviesList;
+export { MoviesList };

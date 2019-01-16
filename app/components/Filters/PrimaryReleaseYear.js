@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text } from "react-native";
 import { observer, inject } from "mobx-react";
 
-import { Picker } from "../Picker";
+import { Picker } from "../Picker/Picker";
 import styles from "./styles";
 
 @inject("moviesStore")
@@ -68,7 +68,7 @@ class PrimaryReleaseYear extends React.Component {
     } = this.props;
     return (
       <View>
-        <Text style={styles.textDescription}>Год фильма:</Text>
+        <Text style={styles.textDescription}>Выбрать год фильма:</Text>
         <Picker
           items={years}
           value={primary_release_year}
@@ -79,4 +79,4 @@ class PrimaryReleaseYear extends React.Component {
   }
 }
 
-export default PrimaryReleaseYear;
+export { PrimaryReleaseYear };

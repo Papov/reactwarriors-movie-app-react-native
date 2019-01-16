@@ -5,57 +5,31 @@ const displayWidth = Dimensions.get("window").width;
 
 export default EStyleSheet.create({
   moviesListContainer: {
-    marginTop: 50,
+    marginTop: 60,
+    marginBottom: 50,
     paddingHorizontal: 20,
     width: displayWidth
   },
-  movieItemContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 10,
-    height: displayWidth / 2,
-    borderRadius: 15,
-    overflow: "hidden",
-    backgroundColor: "#f2f2f2"
+  containerStyle: {
+    marginHorizontal: 0,
+    marginVertical: 20,
+    borderRadius: 4,
+    borderWidth: StyleSheet.hairlineWidth
   },
-  leftContainer: {
-    width: displayWidth / 3
+  imageStyle: {
+    height: displayWidth
   },
-  image: {
-    width: "100%",
-    height: "100%"
-  },
-  rightContainer: {
-    width: displayWidth / 2,
-    height: displayWidth / 2 - 5,
-    padding: 5,
-    overflow: "hidden"
-  },
-  text: {
-    fontSize: 14,
-    width: displayWidth / 2 - 40
-  },
-  vote: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "lightgreen",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#424242",
-    position: "absolute",
-    top: 5,
-    right: 5
-  },
-  voteText: {
-    fontSize: 12
-  },
-  date: {
+  italic: {
     fontStyle: "italic"
   },
-  overview: {
-    fontSize: 10,
-    paddingBottom: 10
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    fontSize: 12
+  },
+  vote: {
+    position: "absolute",
+    top: 0,
+    right: 0
   }
 });

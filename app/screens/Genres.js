@@ -2,7 +2,7 @@ import React from "react";
 import { View, StatusBar } from "react-native";
 import { observer, inject } from "mobx-react";
 
-import { Genres as GenresContainer } from "../components/Filters";
+import { Genres as GenresContainer } from "../components/Filters/Genres";
 
 @inject("moviesStore")
 @observer
@@ -17,4 +17,4 @@ class Genres extends React.Component {
   }
 }
 
-export default Genres;
+export { Genres };

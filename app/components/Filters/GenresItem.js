@@ -1,15 +1,30 @@
 import React from "react";
 import { CheckBox } from "react-native-elements";
 
-const GenresItem = ({ item, checked, onPress }) => (
-  <CheckBox
-    title={item.name}
-    checked={checked}
-    onPress={onPress({
-      value: String(item.id),
-      checked
-    })}
-  />
-);
+class GenresItem extends React.Component {
+  state = {
+    checked: this.props.checked
+  };
 
-export default GenresItem;
+  handleCheck = () => {
+    this.setState(
+      prevState => ({
+        checked: !prevState.checked
+      }),
+      () => {
+        this.props.onPress({
+          checked: this.state.checked,
+          id: this.props.item.id
+        });
+      }
+    );
+  };
+
+  render() {
+    console.log("render");
+    const { item } = this.props;
+    return <CheckBox title={item.name} checked={this.state.checked} onPress={this.handleCheck} />;
+  }
+}
+
+export { GenresItem };

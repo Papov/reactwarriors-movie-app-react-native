@@ -4,10 +4,10 @@ import { TouchableOpacity, View, Text } from "react-native";
 
 import styles from "./styles";
 
-const ButtonDefault = ({ onPress, title, label = null }) => (
+const ButtonDefault = ({ onPress, title, label = null, color = "#fff" }) => (
   <View>
     {label && <Text style={styles.label}>{label}</Text>}
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity style={{ ...styles.button, backgroundColor: color }} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   </View>
@@ -20,4 +20,4 @@ ButtonDefault.propTypes = {
   label: PropTypes.string
 };
 
-export default ButtonDefault;
+export { ButtonDefault };

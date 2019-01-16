@@ -17,4 +17,4 @@ Picker.propTypes = {
   value: PropTypes.string
 };
 
-export default Picker;
+export { Picker };

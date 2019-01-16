@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text } from "react-native";
 import { observer, inject } from "mobx-react";
 
-import { Picker } from "../Picker";
+import { Picker } from "../Picker/Picker";
 import styles from "./styles";
 
 @inject("moviesStore")
@@ -63,4 +63,4 @@ class SortBy extends React.Component {
   }
 }
 
-export default SortBy;
+export { SortBy };

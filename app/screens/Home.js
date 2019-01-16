@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StatusBar, View } from "react-native";
 
-import { MoviesList } from "../components/Movies";
-import { Header } from "../components/Header";
+import { MoviesList } from "../components/Movies/MoviesList";
+import { Header } from "../components/Header/Header";
+import { Footer } from "../components/Footer/Footer";
 
 class Home extends React.Component {
   static propTypes = {
@@ -17,12 +18,13 @@ class Home extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center", width: "100%" }}>
-        <StatusBar barStyle="default" translucent={false} />
+        <StatusBar barStyle="light-content" translucent={false} />
         <Header onPress={this.onPress} />
         <MoviesList />
+        <Footer />
       </View>
     );
   }
 }
 
-export default Home;
+export { Home };

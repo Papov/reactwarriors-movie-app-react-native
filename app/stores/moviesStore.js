@@ -7,7 +7,7 @@ class MoviesStore {
   filters = {
     sort_by: "popularity.desc",
     primary_release_year: "",
-    with_genres: ["28"]
+    with_genres: []
   };
 
   @observable
@@ -26,7 +26,7 @@ class MoviesStore {
   page = 1;
 
   @observable
-  total_pages = "";
+  total_pages = 1;
 
   getMovies = flow(function*() {
     moviesStore.isLoading = true;
@@ -96,17 +96,18 @@ class MoviesStore {
         language: "ru-RU"
       }
     });
-    this.genresList.replace(data.genres);
+    this.genresList.replace(
+      data.genres.map(item => ({
+        ...item,
+        checked: false
+      }))
+    );
   };
 
   @action
-  checkedGenges = data => () => {
-    const { with_genres } = this.filters;
-    const value = data.checked
-      ? [...with_genres, data.value]
-      : with_genres.filter(genre => genre !== data.value);
-    this.filters.with_genres = value;
-    console.log(this.filters.with_genres);
+  checkedGenges = ({ id, checked }) => {
+    let { with_genres } = this.filters;
+    checked ? with_genres.push(id) : with_genres.replace(with_genres.filter(item => item !== id));
   };
 
   // @action

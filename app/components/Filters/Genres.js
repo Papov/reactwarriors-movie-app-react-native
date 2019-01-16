@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, View } from "react-native";
 import { observer, inject } from "mobx-react";
 
-import GenresItem from "./GenresItem";
+import { GenresItem } from "./GenresItem";
 
 @inject("moviesStore")
 @observer
@@ -10,6 +10,7 @@ class Genres extends React.Component {
   componentDidMount() {
     this.props.moviesStore.genresDidMount();
   }
+
   render() {
     const {
       moviesStore: {
@@ -25,7 +26,7 @@ class Genres extends React.Component {
           renderItem={({ item }) => (
             <GenresItem
               item={item}
-              checked={with_genres.includes(String(item.id))}
+              checked={with_genres.includes(Number(item.id))}
               onPress={checkedGenges}
             />
           )}
@@ -36,4 +37,4 @@ class Genres extends React.Component {
   }
 }
 
-export default Genres;
+export { Genres };

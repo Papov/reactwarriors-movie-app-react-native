@@ -1,8 +1,8 @@
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
-import Home from "../screens/Home";
-import Filters from "../screens/Filters";
-import Genres from "../screens/Genres";
+import { Home } from "../screens/Home";
+import { Filters } from "../screens/Filters";
+import { Genres } from "../screens/Genres";
 
 const FiltersStack = createStackNavigator(
   {

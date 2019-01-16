@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 const styles = EStyleSheet.create({
@@ -6,7 +7,7 @@ const styles = EStyleSheet.create({
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: "gray",
     borderRadius: 4,
     backgroundColor: "white",
