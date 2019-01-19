@@ -6,13 +6,15 @@ const styles = EStyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#563d7c",
+    backgroundColor: "$mainPurple",
     paddingTop: 15,
-    height: 60
+    paddingHorizontal: 15,
+    height: 70,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   button: {
-    alignSelf: "flex-start",
-    paddingHorizontal: 15,
     paddingVertical: 10
   }
 });

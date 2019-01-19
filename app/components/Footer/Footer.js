@@ -33,9 +33,9 @@ class Footer extends React.Component {
     const { total_pages, page } = this.props.moviesStore;
     return (
       <View style={styles.container}>
-        <AntDesignButton name="left" onPress={this.previousPage} />
+        <AntDesignButton name="left" onPress={this.previousPage} size={25} />
         <Text style={styles.text}>{`${page} / ${total_pages}`}</Text>
-        <AntDesignButton name="right" onPress={this.nextPage} />
+        <AntDesignButton name="right" onPress={this.nextPage} size={25} />
       </View>
     );
   }

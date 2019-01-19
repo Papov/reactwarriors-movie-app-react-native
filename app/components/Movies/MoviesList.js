@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { observer, inject } from "mobx-react";
 
 import { MovieItem } from "./MovieItem";
@@ -26,7 +26,9 @@ class MoviesList extends React.Component {
     return (
       <View style={styles.moviesListContainer}>
         {isLoading ? (
-          <Text>...Loading</Text>
+          <View>
+            <ActivityIndicator color="#563d7c" size="large" />
+          </View>
         ) : (
           <FlatList
             data={movies}

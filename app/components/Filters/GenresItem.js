@@ -8,6 +8,7 @@ class GenresItem extends React.Component {
     item: PropTypes.object,
     onPress: PropTypes.func
   };
+
   state = {
     checked: this.props.checked
   };
@@ -28,7 +29,15 @@ class GenresItem extends React.Component {
 
   render() {
     const { item } = this.props;
-    return <CheckBox title={item.name} checked={this.state.checked} onPress={this.handleCheck} />;
+    return (
+      <CheckBox
+        checkedIcon="dot-circle-o"
+        uncheckedIcon="circle-o"
+        title={item.name}
+        checked={this.state.checked}
+        onPress={this.handleCheck}
+      />
+    );
   }
 }
 

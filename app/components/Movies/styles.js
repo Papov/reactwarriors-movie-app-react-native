@@ -5,8 +5,8 @@ const displayWidth = Dimensions.get("window").width;
 
 export default EStyleSheet.create({
   moviesListContainer: {
-    marginTop: 60,
-    marginBottom: 50,
+    marginTop: 70,
+    marginBottom: 10,
     paddingHorizontal: 20,
     width: displayWidth
   },

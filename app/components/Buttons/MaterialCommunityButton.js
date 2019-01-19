@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TouchableOpacity, View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const AntDesignButton = ({
+const MaterialCommunityButton = ({
   style = null,
   onPress = null,
   color = "#fff",
@@ -12,12 +12,12 @@ const AntDesignButton = ({
 }) => (
   <View>
     <TouchableOpacity onPress={onPress} style={{ ...style }}>
-      <AntDesign color={color} size={size} name={name} />
+      <MaterialCommunityIcons color={color} size={size} name={name} />
     </TouchableOpacity>
   </View>
 );
 
-AntDesignButton.propTypes = {
+MaterialCommunityButton.propTypes = {
   onPress: PropTypes.func,
   color: PropTypes.string,
   size: PropTypes.number,
@@ -25,4 +25,4 @@ AntDesignButton.propTypes = {
   style: PropTypes.object
 };
 
-export { AntDesignButton };
+export { MaterialCommunityIcons };

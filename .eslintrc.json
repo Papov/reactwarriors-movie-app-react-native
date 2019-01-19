@@ -24,7 +24,8 @@
     "import/no-extraneous-dependencies": 0,
     "react/no-unused-prop-types": 0,
     "no-console": 0,
-    "react/destructuring-assignment": 0
+    "react/destructuring-assignment": 0,
+    "react/jsx-wrap-multilines": 0
   },
   "parserOptions": {
     "ecmaFeatures": {

@@ -1,10 +1,6 @@
 import { observable, action, reaction, values } from "mobx";
-import Cookies from "universal-cookie";
 import { CallApi } from "../config/api";
-import { loginFormStore } from "./loginFormStore";
 import { moviesStore } from "./moviesStore";
-
-const cookies = new Cookies();
 
 class UserStore {
   @observable
@@ -65,27 +61,23 @@ class UserStore {
 
   @action
   onLogOut = () => {
-    cookies.remove("session_id", {
-      path: "/"
-    });
     this.user = null;
     this.session_id = null;
     this.popovnerOpen = false;
   };
 
-  @action
-  getSessionIdFromCookie = async () => {
-    const session_id = cookies.get("session_id");
-    if (session_id) {
-      const user = await CallApi.get("/account", {
-        params: {
-          session_id: session_id
-        }
-      });
-      this.session_id = session_id;
-      this.user = user;
-    }
-  };
+  // @action
+  // getSessionIdFromCookie = async () => {
+  //   if (session_id) {
+  //     const user = await CallApi.get("/account", {
+  //       params: {
+  //         session_id: session_id
+  //       }
+  //     });
+  //     this.session_id = session_id;
+  //     this.user = user;
+  //   }
+  // };
 
   @action
   addToMyList = ({ movieId, type, isAdd }) => async () => {
@@ -103,41 +95,39 @@ class UserStore {
         body: body
       });
       this.updateAddedMovie(type);
-    } else {
-      loginFormStore.toogleLoginForm();
     }
   };
 }
 
 export const userStore = new UserStore();
 
-reaction(
-  () => userStore.user,
-  user => {
-    if (user) {
-      userStore.updateAddedMovie("watchlist");
-      userStore.updateAddedMovie("favorite");
-    } else {
-      userStore.favorite.clear();
-      userStore.watchlist.clear();
-    }
-  }
-);
+// reaction(
+//   () => userStore.user,
+//   user => {
+//     if (user) {
+//       userStore.updateAddedMovie("watchlist");
+//       userStore.updateAddedMovie("favorite");
+//     } else {
+//       userStore.favorite.clear();
+//       userStore.watchlist.clear();
+//     }
+//   }
+// );
 
-reaction(
-  () => values(userStore.favorite),
-  favorite => {
-    moviesStore.movies.forEach(movie => {
-      movie.favorite = favorite.includes(movie.id);
-    });
-  }
-);
+// reaction(
+//   () => values(userStore.favorite),
+//   favorite => {
+//     moviesStore.movies.forEach(movie => {
+//       movie.favorite = favorite.includes(movie.id);
+//     });
+//   }
+// );
 
-reaction(
-  () => values(userStore.watchlist),
-  watchlist => {
-    moviesStore.movies.forEach(movie => {
-      movie.watchlist = watchlist.includes(movie.id);
-    });
-  }
-);
+// reaction(
+//   () => values(userStore.watchlist),
+//   watchlist => {
+//     moviesStore.movies.forEach(movie => {
+//       movie.watchlist = watchlist.includes(movie.id);
+//     });
+//   }
+// );

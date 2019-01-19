@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, StatusBar } from "react-native";
-
 import { inject } from "mobx-react";
+import { Actions } from "react-native-router-flux";
+
 import { PrimaryReleaseYear } from "../components/Filters/PrimaryReleaseYear";
 import { SortBy } from "../components/Filters/SortBy";
 import { ButtonDefault } from "../components/Buttons/ButtonDefault";
@@ -15,11 +16,11 @@ class Filters extends React.Component {
   };
 
   handleClickGenres = () => {
-    this.props.navigation.navigate("Genres");
+    Actions.genres();
   };
 
   returnToMovies = () => {
-    this.props.navigation.goBack(null);
+    Actions.pop();
   };
 
   render() {

@@ -2,11 +2,9 @@ import React from "react";
 import { StatusBar, View } from "react-native";
 import { Actions } from "react-native-router-flux";
 
-import { MoviesList } from "../components/Movies/MoviesList";
-import { Header } from "../components/Header/Header";
-import { Footer } from "../components/Footer/Footer";
+import { Login as LoginComponent } from "../components/Login";
 
-class Home extends React.Component {
+class Login extends React.Component {
   static propTypes = {};
 
   toFilterScreen = () => {
@@ -17,12 +15,10 @@ class Home extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center", width: "100%" }}>
         <StatusBar barStyle="light-content" translucent={false} />
-        <Header onPress={this.toFilterScreen} />
-        <MoviesList />
-        <Footer />
+        <LoginComponent />
       </View>
     );
   }
 }
 
-export { Home };
+export { Login };

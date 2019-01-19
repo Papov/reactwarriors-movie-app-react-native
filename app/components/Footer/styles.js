@@ -3,7 +3,7 @@ import EStyleSheet from "react-native-extended-stylesheet";
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    height: 50,
+    height: 40,
     flexDirection: "row",
     backgroundColor: "#563d7c",
     position: "absolute",
