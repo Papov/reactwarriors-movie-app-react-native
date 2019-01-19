@@ -13,7 +13,14 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", width: "100%" }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%"
+        }}
+      >
         <StatusBar barStyle="light-content" translucent={false} />
         <LoginComponent />
       </View>

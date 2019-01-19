@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { Avatar } from "react-native-elements";
 import { observer, inject } from "mobx-react";

@@ -52,6 +52,7 @@ class Login extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log("unmount");
     this.keyboardShowListener.remove();
     this.keyboardHideListener.remove();
   }
