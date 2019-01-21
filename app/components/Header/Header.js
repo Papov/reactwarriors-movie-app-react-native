@@ -23,7 +23,7 @@ class Header extends React.Component {
   render() {
     const {
       onPress,
-      userStore: { user }
+      userStore: { user, exitFromAccount }
     } = this.props;
     return (
       <View style={styles.container}>
@@ -42,7 +42,7 @@ class Header extends React.Component {
                 user.avatar.gravatar.hash
               }.jpg?s=64`
             }}
-            onPress={() => console.log("Works!")}
+            onPress={exitFromAccount}
             activeOpacity={0.7}
           />
         ) : (

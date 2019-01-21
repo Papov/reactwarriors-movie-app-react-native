@@ -1,6 +1,6 @@
 import { observable, action, flow } from "mobx";
 import { Actions } from "react-native-router-flux";
-import { Vibration } from "react-native";
+import { Vibration, AsyncStorage } from "react-native";
 import { userStore } from "./userStore";
 import { CallApi } from "../config/api";
 
@@ -108,6 +108,7 @@ class LoginFormStore {
       loginFormStore.submitAwait = false;
       userStore.user = user;
       Actions.home();
+      yield AsyncStorage.setItem("session_id", session_id);
     } catch (error) {
       loginFormStore.submitAwait = false;
       loginFormStore.errors.base = loginFormStore.messages.base;

@@ -21,11 +21,15 @@ import { MaterialCommunityIcons } from "../Buttons/MaterialCommunityButton";
 
 const ANIMAT_DURAT = 320;
 
-@inject("loginFormStore")
+@inject(({ loginFormStore, userStore }) => ({
+  loginFormStore,
+  userStore
+}))
 @observer
 class Login extends React.Component {
   static propTypes = {
-    loginFormStore: PropTypes.object
+    loginFormStore: PropTypes.object,
+    userStore: PropTypes.object
   };
 
   constructor(props) {
@@ -50,6 +54,7 @@ class Login extends React.Component {
       keyboardHide,
       this.keyboardHide
     );
+    this.props.userStore.getSessionIdFromCookie();
   }
 
   componentWillUnmount() {
