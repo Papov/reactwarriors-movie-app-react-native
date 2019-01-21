@@ -37,6 +37,7 @@ class Header extends React.Component {
           <Avatar
             size={40}
             rounded
+            title="VP"
             source={{
               uri: `https://secure.gravatar.com/avatar/${
                 user.avatar.gravatar.hash

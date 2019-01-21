@@ -1,18 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, ActivityIndicator, Animated, Dimensions } from "react-native";
+import {
+  View,
+  ActivityIndicator,
+  FlatList,
+  Animated,
+  Dimensions
+} from "react-native";
 import { observer, inject } from "mobx-react";
 
 import { MovieItem } from "./MovieItem";
 import styles from "./styles";
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const xOffset = new Animated.Value(0);
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const transitionAnimation = index => {
   return {
     transform: [
-      { perspective: 800 },
+      { perspective: 300 },
       {
         scale: xOffset.interpolate({
           inputRange: [
@@ -24,23 +31,13 @@ const transitionAnimation = index => {
         })
       },
       {
-        rotateX: xOffset.interpolate({
-          inputRange: [
-            (index - 1) * SCREEN_WIDTH,
-            index * SCREEN_WIDTH,
-            (index + 1) * SCREEN_WIDTH
-          ],
-          outputRange: ["5deg", "0deg", "5deg"]
-        })
-      },
-      {
         rotateY: xOffset.interpolate({
           inputRange: [
             (index - 1) * SCREEN_WIDTH,
             index * SCREEN_WIDTH,
             (index + 1) * SCREEN_WIDTH
           ],
-          outputRange: ["-5deg", "0deg", "5deg"]
+          outputRange: ["-10deg", "0deg", "10deg"]
         })
       }
     ]
@@ -71,7 +68,16 @@ class MoviesList extends React.Component {
             <ActivityIndicator color="#563d7c" size="large" />
           </View>
         ) : (
-          <Animated.ScrollView
+          <AnimatedFlatList
+            data={movies}
+            renderItem={({ item, index }) => (
+              <MovieItem
+                item={item}
+                index={index}
+                style={transitionAnimation(index)}
+              />
+            )}
+            keyExtractor={item => String(item.id)}
             scrollEventThrottle={16}
             showsHorizontalScrollIndicator={false}
             onScroll={Animated.event(
@@ -81,16 +87,7 @@ class MoviesList extends React.Component {
             horizontal
             pagingEnabled
             style={{ width: SCREEN_WIDTH }}
-          >
-            {movies.map((item, index) => (
-              <MovieItem
-                key={item.id}
-                item={item}
-                index={index}
-                style={transitionAnimation(index)}
-              />
-            ))}
-          </Animated.ScrollView>
+          />
         )}
       </View>
     );
