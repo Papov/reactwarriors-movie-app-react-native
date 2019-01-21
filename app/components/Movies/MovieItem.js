@@ -7,7 +7,8 @@ import { Card } from "react-native-elements";
 
 import styles from "./styles";
 
-const noImageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/75/No_image_available.png";
+const noImageUrl =
+  "https://upload.wikimedia.org/wikipedia/commons/7/75/No_image_available.png";
 
 @observer
 class MovieItem extends React.Component {
@@ -19,7 +20,8 @@ class MovieItem extends React.Component {
     const { item } = this.props;
     const image_available = !!(item.backdrop_path || item.poster_path);
     const image_src = image_available
-      ? `https://image.tmdb.org/t/p/w500${item.poster_path || item.backdrop_path}`
+      ? `https://image.tmdb.org/t/p/w500${item.poster_path ||
+          item.backdrop_path}`
       : noImageUrl;
     return (
       <View>
@@ -32,7 +34,9 @@ class MovieItem extends React.Component {
           <View>
             <View style={styles.row}>
               <Text h4>Год: </Text>
-              <Text style={styles.italic}>{String(item.release_date).split("-")[0]}</Text>
+              <Text style={styles.italic}>
+                {String(item.release_date).split("-")[0]}
+              </Text>
             </View>
             <View style={styles.row}>
               <Text>Язык оригинала: </Text>

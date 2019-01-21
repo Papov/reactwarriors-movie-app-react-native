@@ -12,10 +12,10 @@ class LoginFormStore {
   };
 
   @observable
-  username = "";
+  username = "vlad_link";
 
   @observable
-  password = "";
+  password = "Link0lnpassword";
 
   @observable
   errors = {};

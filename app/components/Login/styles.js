@@ -7,7 +7,6 @@ const styles = EStyleSheet.create({
   $visible: 1,
   $unVisible: 0,
   $purple: "$mainPurple",
-  $purpleColor: "$mainPurple",
   $startInputAnimation: 0,
   $finishInputAnimation: -130,
   container: {
@@ -29,7 +28,7 @@ const styles = EStyleSheet.create({
   },
   inputContainer: {
     position: "relative",
-    top: "$startInputAnimation"
+    top: 0
   },
   inputStyle: {
     color: "#fff",

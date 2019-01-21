@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import {
   Keyboard,
   TouchableOpacity,
-  Animated,
   Platform,
   Text,
-  View
+  View,
+  Animated
 } from "react-native";
 import { observer, inject } from "mobx-react";
 import { Input, Button } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
 import Color from "color";
+import * as Animatable from "react-native-animatable";
 
 import styles from "./styles";
 import { Container } from "../Container";
@@ -52,7 +53,7 @@ class Login extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log("unmount");
+    console.log("unmount login");
     this.keyboardShowListener.remove();
     this.keyboardHideListener.remove();
   }
@@ -109,7 +110,7 @@ class Login extends React.Component {
       backgroundColor: Color(styles.$purple).lighten(0.6)
     };
 
-    const iconStyle = { ...styles.iconStyle, opacity: this.opacity };
+    const iconStyle = { opacity: this.opacity };
     return (
       <Container>
         <Animated.View style={iconStyle}>
@@ -120,45 +121,67 @@ class Login extends React.Component {
           />
         </Animated.View>
         <Animated.View style={inputContainerStyle}>
-          <Input
-            placeholder="Введите логин"
-            placeholderTextColor="#fff"
-            errorMessage={errors.username && errors.username}
-            errorStyle={styles.error}
-            leftIcon={<AntDesignButton size={20} name="user" />}
-            value={username}
-            onChangeText={onHandleChange("username")}
-            inputContainerStyle={inputColor}
-            inputStyle={styles.inputStyle}
-            underlineColorAndroid="transparent"
-          />
-          <Input
-            placeholder="Введите пароль"
-            placeholderTextColor="#fff"
-            errorMessage={errors.password && errors.password}
-            errorStyle={styles.error}
-            leftIcon={<AntDesignButton size={20} name="key" />}
-            value={password}
-            onChangeText={onHandleChange("password")}
-            inputContainerStyle={inputColor}
-            inputStyle={styles.inputStyle}
-          />
-        </Animated.View>
-        <Button
-          title="Войти"
-          titleStyle={styles.inputStyle}
-          icon={
-            <AntDesignButton
-              onPress={onSubmitClick}
-              size={20}
-              name="login"
-              style={{ paddingLeft: 17 }}
+          <Animatable.View
+            easing="ease"
+            iterationCount={1}
+            animation={errors.username && "shake"}
+            useNativeDriver
+          >
+            <Input
+              placeholder="Введите логин"
+              placeholderTextColor="#fff"
+              errorMessage={errors.username && errors.username}
+              errorStyle={styles.error}
+              leftIcon={<AntDesignButton size={20} name="user" />}
+              value={username}
+              onChangeText={onHandleChange("username")}
+              inputContainerStyle={inputColor}
+              inputStyle={styles.inputStyle}
+              underlineColorAndroid="transparent"
             />
-          }
-          buttonStyle={inputColor}
-          onPress={onSubmitClick}
-          disabled={submitAwait}
-        />
+          </Animatable.View>
+          <Animatable.View
+            easing="ease"
+            iterationCount={1}
+            animation={errors.password && "shake"}
+            useNativeDriver
+          >
+            <Input
+              placeholder="Введите пароль"
+              placeholderTextColor="#fff"
+              errorMessage={errors.password && errors.password}
+              errorStyle={styles.error}
+              leftIcon={<AntDesignButton size={20} name="key" />}
+              value={password}
+              onChangeText={onHandleChange("password")}
+              inputContainerStyle={inputColor}
+              inputStyle={styles.inputStyle}
+              secureTextEntry
+            />
+          </Animatable.View>
+        </Animated.View>
+        <Animatable.View
+          easing="ease"
+          iterationCount={1}
+          animation={errors.base && "shake"}
+          useNativeDriver
+        >
+          <Button
+            title="Войти"
+            titleStyle={styles.inputStyle}
+            icon={
+              <AntDesignButton
+                onPress={onSubmitClick}
+                size={20}
+                name="login"
+                style={{ paddingLeft: 17 }}
+              />
+            }
+            buttonStyle={inputColor}
+            onPress={onSubmitClick}
+            disabled={submitAwait}
+          />
+        </Animatable.View>
         <View style={styles.skipContainer}>
           {errors.base && (
             <View style={{ position: "relative" }}>

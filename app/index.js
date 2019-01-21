@@ -28,14 +28,19 @@ class App extends React.Component {
     return (
       <Router>
         <Scene key="root">
-          {!this.props.userStore.user && (
-            <Scene key="login" component={Login} initial hideNavBar />
-          )}
+          <Scene
+            key="login"
+            component={Login}
+            initial
+            hideNavBar
+            type="reset"
+          />
           <Scene
             key="home"
             component={Home}
             title="Movies"
             hideNavBar
+            type="reset" /* have to find api */
             gesturesEnabled={false} /* dirty hack */
           />
           <Scene key="filters" component={Filters} title="Filters" />

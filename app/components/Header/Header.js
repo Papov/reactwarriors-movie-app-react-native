@@ -29,7 +29,6 @@ class Header extends React.Component {
       <View style={styles.container}>
         <AntDesignButton
           onPress={onPress}
-          color="#fff"
           size={25}
           name="filter"
           style={styles.button}
@@ -50,7 +49,6 @@ class Header extends React.Component {
           <AntDesignButton
             name="user"
             size={25}
-            color="#fff"
             onPress={this.toLoginForm}
             style={styles.button}
           />
