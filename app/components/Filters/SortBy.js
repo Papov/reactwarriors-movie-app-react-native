@@ -57,7 +57,11 @@ class SortBy extends React.Component {
     return (
       <View>
         <Text style={styles.textDescription}>Сортировать по:</Text>
-        <Picker items={options} onChange={this.handleChangeSortBy} value={sort_by} />
+        <Picker
+          items={options}
+          onChange={this.handleChangeSortBy}
+          value={sort_by}
+        />
       </View>
     );
   }

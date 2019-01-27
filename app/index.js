@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Provider, observer, inject } from "mobx-react";
+import { Provider } from "mobx-react";
 import EStyleSheet from "react-native-extended-stylesheet";
 import { Router, Scene } from "react-native-router-flux";
 
@@ -17,13 +16,7 @@ EStyleSheet.build({
   $mainPurple: "rgb(86,61,124)"
 });
 
-@inject("userStore")
-@observer
 class App extends React.Component {
-  static propTypes = {
-    userStore: PropTypes.object
-  };
-
   render() {
     return (
       <Router>

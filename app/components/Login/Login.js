@@ -15,7 +15,7 @@ import Color from "color";
 import * as Animatable from "react-native-animatable";
 
 import styles from "./styles";
-import { Container } from "../Container";
+import { Container } from "../Container/Container";
 import { AntDesignButton } from "../Buttons/AntDesignButton";
 import { MaterialCommunityIcons } from "../Buttons/MaterialCommunityButton";
 
@@ -210,4 +210,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export { Login };

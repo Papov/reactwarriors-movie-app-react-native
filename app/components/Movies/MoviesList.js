@@ -13,7 +13,7 @@ import { MovieItem } from "./MovieItem";
 import styles from "./styles";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-const xOffset = new Animated.Value(0);
+const gestureX = new Animated.Value(0);
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const transitionAnimation = index => {
@@ -21,7 +21,7 @@ const transitionAnimation = index => {
     transform: [
       { perspective: 300 },
       {
-        scale: xOffset.interpolate({
+        scale: gestureX.interpolate({
           inputRange: [
             (index - 1) * SCREEN_WIDTH,
             index * SCREEN_WIDTH,
@@ -31,7 +31,7 @@ const transitionAnimation = index => {
         })
       },
       {
-        rotateY: xOffset.interpolate({
+        rotateY: gestureX.interpolate({
           inputRange: [
             (index - 1) * SCREEN_WIDTH,
             index * SCREEN_WIDTH,
@@ -81,7 +81,7 @@ class MoviesList extends React.Component {
             scrollEventThrottle={16}
             showsHorizontalScrollIndicator={false}
             onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { x: xOffset } } }],
+              [{ nativeEvent: { contentOffset: { x: gestureX } } }],
               { useNativeDriver: true }
             )}
             horizontal

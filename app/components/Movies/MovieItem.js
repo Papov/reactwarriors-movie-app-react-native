@@ -13,7 +13,8 @@ const noImageUrl =
 @observer
 class MovieItem extends React.Component {
   static propTypes = {
-    item: PropTypes.object
+    item: PropTypes.object,
+    style: PropTypes.object
   };
 
   render() {
