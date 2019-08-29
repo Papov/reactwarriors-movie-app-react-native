@@ -23,13 +23,12 @@ class Header extends React.Component {
   render() {
     const {
       onPress,
-      userStore: { user }
+      userStore: { user, exitFromAccount }
     } = this.props;
     return (
       <View style={styles.container}>
         <AntDesignButton
           onPress={onPress}
-          color="#fff"
           size={25}
           name="filter"
           style={styles.button}
@@ -38,19 +37,19 @@ class Header extends React.Component {
           <Avatar
             size={40}
             rounded
+            title="VP"
             source={{
               uri: `https://secure.gravatar.com/avatar/${
                 user.avatar.gravatar.hash
               }.jpg?s=64`
             }}
-            onPress={() => console.log("Works!")}
+            onPress={exitFromAccount}
             activeOpacity={0.7}
           />
         ) : (
           <AntDesignButton
             name="user"
             size={25}
-            color="#fff"
             onPress={this.toLoginForm}
             style={styles.button}
           />

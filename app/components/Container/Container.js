@@ -13,4 +13,4 @@ Container.propTypes = {
   children: PropTypes.any
 };
 
-export default Container;
+export { Container };

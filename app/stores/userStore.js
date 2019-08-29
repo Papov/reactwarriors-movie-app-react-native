@@ -1,4 +1,6 @@
 import { observable, action, reaction, values } from "mobx";
+import { AsyncStorage } from "react-native";
+import { Actions } from "react-native-router-flux";
 import { CallApi } from "../config/api";
 import { moviesStore } from "./moviesStore";
 
@@ -41,13 +43,16 @@ class UserStore {
     const moviesId = [];
     let page = 1;
     const getAddedMovies = async () => {
-      const responseApi = await CallApi.get(`/account/${user.id}/${listName}/movies`, {
-        params: {
-          language: "ru-RU",
-          session_id: session_id,
-          page: page
+      const responseApi = await CallApi.get(
+        `/account/${user.id}/${listName}/movies`,
+        {
+          params: {
+            language: "ru-RU",
+            session_id: session_id,
+            page: page
+          }
         }
-      });
+      );
       moviesId.push(...responseApi.results.map(item => item.id));
       if (responseApi.total_pages > page) {
         page++;
@@ -60,24 +65,28 @@ class UserStore {
   };
 
   @action
-  onLogOut = () => {
+  onLogOut = async () => {
     this.user = null;
     this.session_id = null;
     this.popovnerOpen = false;
+    await AsyncStorage.clear();
+    Actions.login();
   };
 
-  // @action
-  // getSessionIdFromCookie = async () => {
-  //   if (session_id) {
-  //     const user = await CallApi.get("/account", {
-  //       params: {
-  //         session_id: session_id
-  //       }
-  //     });
-  //     this.session_id = session_id;
-  //     this.user = user;
-  //   }
-  // };
+  @action
+  getSessionIdFromCookie = async () => {
+    const session_id = await AsyncStorage.getItem("session_id");
+    if (session_id) {
+      const user = await CallApi.get("/account", {
+        params: {
+          session_id: session_id
+        }
+      });
+      this.session_id = session_id;
+      this.user = user;
+      Actions.home();
+    }
+  };
 
   @action
   addToMyList = ({ movieId, type, isAdd }) => async () => {
@@ -101,33 +110,33 @@ class UserStore {
 
 export const userStore = new UserStore();
 
-// reaction(
-//   () => userStore.user,
-//   user => {
-//     if (user) {
-//       userStore.updateAddedMovie("watchlist");
-//       userStore.updateAddedMovie("favorite");
-//     } else {
-//       userStore.favorite.clear();
-//       userStore.watchlist.clear();
-//     }
-//   }
-// );
+reaction(
+  () => userStore.user,
+  user => {
+    if (user) {
+      userStore.updateAddedMovie("watchlist");
+      userStore.updateAddedMovie("favorite");
+    } else {
+      userStore.favorite.clear();
+      userStore.watchlist.clear();
+    }
+  }
+);
 
-// reaction(
-//   () => values(userStore.favorite),
-//   favorite => {
-//     moviesStore.movies.forEach(movie => {
-//       movie.favorite = favorite.includes(movie.id);
-//     });
-//   }
-// );
+reaction(
+  () => values(userStore.favorite),
+  favorite => {
+    moviesStore.movies.forEach(movie => {
+      movie.favorite = favorite.includes(movie.id);
+    });
+  }
+);
 
-// reaction(
-//   () => values(userStore.watchlist),
-//   watchlist => {
-//     moviesStore.movies.forEach(movie => {
-//       movie.watchlist = watchlist.includes(movie.id);
-//     });
-//   }
-// );
+reaction(
+  () => values(userStore.watchlist),
+  watchlist => {
+    moviesStore.movies.forEach(movie => {
+      movie.watchlist = watchlist.includes(movie.id);
+    });
+  }
+);

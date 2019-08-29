@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar, View } from "react-native";
 import { Actions } from "react-native-router-flux";
 
-import { Login as LoginComponent } from "../components/Login";
+import { Login as LoginComponent } from "../components/Login/Login";
 
 class Login extends React.Component {
   static propTypes = {};

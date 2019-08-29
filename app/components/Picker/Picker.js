@@ -7,7 +7,12 @@ import styles from "./styles";
 
 const Picker = ({ items, onChange, value }) => (
   <View style={styles.pickerContainer}>
-    <RNPickerSelect items={items} onValueChange={onChange} value={value} style={{ ...styles }} />
+    <RNPickerSelect
+      items={items}
+      onValueChange={onChange}
+      value={value}
+      style={{ ...styles }}
+    />
   </View>
 );
 
